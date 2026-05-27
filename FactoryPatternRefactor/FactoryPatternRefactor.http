@@ -1,0 +1,24 @@
+@FactoryPatternRefactor_HostAddress = http://localhost:5163
+
+GET {{FactoryPatternRefactor_HostAddress}}/channels
+Accept: application/json
+
+###
+
+POST {{FactoryPatternRefactor_HostAddress}}/notify/single
+Content-Type: application/json
+
+{ "channel": "Email", "recipient": "user@example.com", "subject": "Test", "body": "Hello" }
+
+###
+
+POST {{FactoryPatternRefactor_HostAddress}}/notify/bulk
+Content-Type: application/json
+
+[
+  { "channel": "Email", "recipient": "user1@example.com", "subject": "Hi", "body": "Message 1" },
+  { "channel": "SMS", "recipient": "+1234567890", "subject": "", "body": "Message 2" },
+  { "channel": "Slack", "recipient": "#general", "subject": "", "body": "Message 3" }
+]
+
+###

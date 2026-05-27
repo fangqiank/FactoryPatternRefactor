@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Center</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Notification Center</h1>
+
+        <!-- Single Send -->
+        <section class="card">
+            <h2>Send Notification</h2>
+            <form id="singleForm">
+                <div class="form-group">
+                    <label for="singleChannel">Channel</label>
+                    <select id="singleChannel" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="singleRecipient">Recipient</label>
+                    <input type="text" id="singleRecipient" placeholder="email / phone / #channel" required>
+                </div>
+                <div class="form-group">
+                    <label for="singleSubject">Subject</label>
+                    <input type="text" id="singleSubject" placeholder="Optional subject">
+                </div>
+                <div class="form-group">
+                    <label for="singleBody">Body</label>
+                    <textarea id="singleBody" rows="3" placeholder="Message content" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="singleBtn">Send</button>
+            </form>
+            <div id="singleResult" class="result"></div>
+        </section>
+
+        <!-- Bulk Send -->
+        <section class="card">
+            <h2>Bulk Send</h2>
+            <div id="bulkRows"></div>
+            <button type="button" class="btn btn-secondary" onclick="addBulkRow()">+ Add Row</button>
+            <button type="button" class="btn btn-primary" onclick="sendBulk()" id="bulkBtn">Send All</button>
+            <div id="bulkResult" class="result"></div>
+        </section>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
