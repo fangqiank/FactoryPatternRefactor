@@ -22,4 +22,9 @@ namespace FactoryPatternRefactor.Models
         public string WebhookUrl { get; set; } = "";
         public string DefaultChannel { get; set; } = "#general";
     }
+
+    public class TeamsSettings
+    {
+        public string WebhookUrl { get; set; } = "";
+    }
 }

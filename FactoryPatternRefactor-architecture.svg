@@ -1,360 +1,320 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 960" width="1200" height="960">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="Arial, sans-serif">
   <defs>
-    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0284c7;stop-opacity:1" />
+    <!-- Gradients -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0284c7"/>
+      <stop offset="100%" style="stop-color:#0ea5e9"/>
     </linearGradient>
-    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#35495e"/>
+      <stop offset="100%" style="stop-color:#42b883"/>
     </linearGradient>
-    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
     </linearGradient>
-    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ea580c"/>
+      <stop offset="100%" style="stop-color:#f97316"/>
     </linearGradient>
-    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#16a34a"/>
+      <stop offset="100%" style="stop-color:#22c55e"/>
     </linearGradient>
-    <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#e94560;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#c73652;stop-opacity:1" />
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
     </linearGradient>
 
-    <marker id="arrowSky" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#0ea5e9"/>
+    <!-- Arrow markers -->
+    <marker id="arrowSky" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#0ea5e9"/>
     </marker>
-    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#a855f7"/>
+    <marker id="arrowTeal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#42b883"/>
     </marker>
-    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#f97316"/>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#a855f7"/>
     </marker>
-    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#22c55e"/>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#f97316"/>
     </marker>
-    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#3b82f6"/>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#22c55e"/>
     </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#3b82f6"/>
+    </marker>
+
+    <style>
+      .flow-line-sky { stroke-dasharray: 8, 4; animation: dash-flow-sky 0.5s linear infinite; }
+      .flow-line-teal { stroke-dasharray: 8, 4; animation: dash-flow-teal 0.5s linear infinite; }
+      .flow-line-purple { stroke-dasharray: 8, 4; animation: dash-flow-purple 0.5s linear infinite; }
+      .flow-line-orange { stroke-dasharray: 8, 4; animation: dash-flow-orange 0.5s linear infinite; }
+      .flow-line-green { stroke-dasharray: 8, 4; animation: dash-flow-green 0.5s linear infinite; }
+      .flow-line-blue { stroke-dasharray: 8, 4; animation: dash-flow-blue 0.5s linear infinite; }
+      @keyframes dash-flow-sky { to { stroke-dashoffset: -12; } }
+      @keyframes dash-flow-teal { to { stroke-dashoffset: -12; } }
+      @keyframes dash-flow-purple { to { stroke-dashoffset: -12; } }
+      @keyframes dash-flow-orange { to { stroke-dashoffset: -12; } }
+      @keyframes dash-flow-green { to { stroke-dashoffset: -12; } }
+      @keyframes dash-flow-blue { to { stroke-dashoffset: -12; } }
+    </style>
   </defs>
 
-  <style>
-    .flow-line-sky { stroke-dasharray: 8, 4; animation: dash-flow-sky 0.5s linear infinite; }
-    .flow-line-purple { stroke-dasharray: 8, 4; animation: dash-flow-purple 0.5s linear infinite; }
-    .flow-line-orange { stroke-dasharray: 8, 4; animation: dash-flow-orange 0.5s linear infinite; }
-    .flow-line-green { stroke-dasharray: 8, 4; animation: dash-flow-green 0.5s linear infinite; }
-    .flow-line-blue { stroke-dasharray: 8, 4; animation: dash-flow-blue 0.5s linear infinite; }
-    @keyframes dash-flow-sky { to { stroke-dashoffset: -12; } }
-    @keyframes dash-flow-purple { to { stroke-dashoffset: -12; } }
-    @keyframes dash-flow-orange { to { stroke-dashoffset: -12; } }
-    @keyframes dash-flow-green { to { stroke-dashoffset: -12; } }
-    @keyframes dash-flow-blue { to { stroke-dashoffset: -12; } }
-  </style>
-
   <!-- Background -->
-  <rect width="1200" height="960" fill="#ffffff"/>
-  <g opacity="0.12">
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#94a3b8" stroke-width="0.5"/>
-    </pattern>
-    <rect width="1200" height="960" fill="url(#grid)"/>
-  </g>
+  <rect width="1200" height="820" fill="#ffffff"/>
 
   <!-- Title -->
-  <text x="600" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1e293b">通知系统架构图 / Notification System Architecture</text>
-  <text x="600" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8">Factory Pattern (ServiceProvider) + ASP.NET Core Minimal API + SPA</text>
+  <text x="600" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1e293b">FactoryPatternRefactor / 工厂模式重构 - 通知系统</text>
+  <text x="600" y="60" text-anchor="middle" font-size="13" fill="#64748b">.NET 10 ASP.NET Core Minimal API + Keyed Services Factory Pattern</text>
 
-  <!-- ==================== 1. Frontend SPA ==================== -->
-  <g transform="translate(430, 70)">
-    <rect x="0" y="0" width="340" height="82" rx="12" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
-    <rect x="0" y="0" width="340" height="32" rx="12" fill="url(#skyGradient)"/>
-    <rect x="0" y="18" width="340" height="14" fill="url(#skyGradient)"/>
-    <text x="170" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">SPA 前端 / Frontend</text>
-    <g transform="translate(12, 42)">
-      <rect x="0" y="0" width="100" height="28" rx="5" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
-      <text x="50" y="18" text-anchor="middle" font-family="monospace" font-size="9" fill="#0284c7">index.html</text>
-    </g>
-    <g transform="translate(120, 42)">
-      <rect x="0" y="0" width="100" height="28" rx="5" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
-      <text x="50" y="18" text-anchor="middle" font-family="monospace" font-size="9" fill="#0284c7">style.css</text>
-    </g>
-    <g transform="translate(228, 42)">
-      <rect x="0" y="0" width="100" height="28" rx="5" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
-      <text x="50" y="18" text-anchor="middle" font-family="monospace" font-size="9" fill="#0284c7">app.js</text>
-    </g>
+  <!-- ============ Column 1: SPA Frontend ============ -->
+  <g transform="translate(30, 90)">
+    <rect x="0" y="0" width="180" height="200" rx="12" fill="#f0fdf4" stroke="#42b883" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="35" rx="12" fill="url(#tealGradient)"/>
+    <text x="90" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">SPA Frontend</text>
+    <text x="90" y="58" text-anchor="middle" font-size="11" fill="#475569">index.html + style.css</text>
+    <text x="90" y="76" text-anchor="middle" font-size="11" fill="#475569">app.js (fetch API)</text>
+    <line x1="15" y1="92" x2="165" y2="92" stroke="#d1d5db" stroke-width="1"/>
+    <text x="90" y="112" text-anchor="middle" font-size="10" fill="#64748b">POST /notify/single</text>
+    <text x="90" y="128" text-anchor="middle" font-size="10" fill="#64748b">POST /notify/bulk</text>
+    <text x="90" y="144" text-anchor="middle" font-size="10" fill="#64748b">GET /channels</text>
+    <text x="90" y="168" text-anchor="middle" font-size="10" fill="#42b883" font-weight="bold">Vanilla JS SPA</text>
+    <text x="90" y="184" text-anchor="middle" font-size="10" fill="#42b883">浏览器端渲染</text>
   </g>
 
-  <!-- Arrow: Frontend → API -->
-  <path d="M 600 152 L 600 178" stroke="#e0f2fe" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 600 152 L 600 178" class="flow-line-sky" stroke="#0ea5e9" stroke-width="3" fill="none" marker-end="url(#arrowSky)" stroke-linecap="round"/>
-
-  <!-- ==================== 2. API Endpoints ==================== -->
-  <g transform="translate(430, 180)">
-    <rect x="0" y="0" width="340" height="142" rx="12" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
-    <rect x="0" y="0" width="340" height="32" rx="12" fill="url(#purpleGradient)"/>
-    <rect x="0" y="18" width="340" height="14" fill="url(#purpleGradient)"/>
-    <text x="170" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">API 端点 / Endpoints</text>
-    <g transform="translate(12, 42)">
-      <rect x="0" y="0" width="152" height="42" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="76" y="16" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#7c3aed">POST</text>
-      <text x="76" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">/notify/single</text>
-    </g>
-    <g transform="translate(176, 42)">
-      <rect x="0" y="0" width="152" height="42" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="76" y="16" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#7c3aed">POST</text>
-      <text x="76" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">/notify/bulk</text>
-    </g>
-    <g transform="translate(12, 92)">
-      <rect x="0" y="0" width="152" height="42" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="76" y="16" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#7c3aed">GET</text>
-      <text x="76" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">/channels</text>
-    </g>
-    <g transform="translate(176, 92)">
-      <rect x="0" y="0" width="152" height="42" rx="6" fill="#ffffff" stroke="#e9d5ff" stroke-width="1"/>
-      <text x="76" y="16" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#94a3b8">Program.cs</text>
-      <text x="76" y="32" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Minimal API</text>
-    </g>
+  <!-- ============ Column 2: API Layer ============ -->
+  <g transform="translate(280, 90)">
+    <rect x="0" y="0" width="180" height="200" rx="12" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="35" rx="12" fill="url(#purpleGradient)"/>
+    <text x="90" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">API Layer</text>
+    <text x="90" y="58" text-anchor="middle" font-size="11" fill="#475569">Program.cs</text>
+    <text x="90" y="76" text-anchor="middle" font-size="11" fill="#475569">Minimal API Endpoints</text>
+    <line x1="15" y1="92" x2="165" y2="92" stroke="#d1d5db" stroke-width="1"/>
+    <text x="90" y="112" text-anchor="middle" font-size="10" fill="#64748b">NotificationRequest</text>
+    <text x="90" y="128" text-anchor="middle" font-size="10" fill="#64748b">JsonStringEnumConverter</text>
+    <text x="90" y="144" text-anchor="middle" font-size="10" fill="#64748b">Model Validation</text>
+    <text x="90" y="168" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="bold">Scalar /openapi</text>
+    <text x="90" y="184" text-anchor="middle" font-size="10" fill="#a855f7">/scalar/v1</text>
   </g>
 
-  <!-- Arrow: API → Service -->
-  <path d="M 600 322 L 600 358" stroke="#ffedd5" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 600 322 L 600 358" class="flow-line-purple" stroke="#a855f7" stroke-width="3" fill="none" marker-end="url(#arrowPurple)" stroke-linecap="round"/>
-  <text x="618" y="344" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#a855f7">JSON</text>
-
-  <!-- ==================== 3. NotificationService ==================== -->
-  <g transform="translate(430, 360)">
-    <rect x="0" y="0" width="340" height="82" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-    <rect x="0" y="0" width="340" height="32" rx="12" fill="url(#orangeGradient)"/>
-    <rect x="0" y="18" width="340" height="14" fill="url(#orangeGradient)"/>
-    <text x="170" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">NotificationService 通知服务</text>
-    <g transform="translate(12, 42)">
-      <rect x="0" y="0" width="152" height="28" rx="5" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
-      <text x="76" y="18" text-anchor="middle" font-family="monospace" font-size="8" fill="#ea580c">SendNotificationAsync()</text>
-    </g>
-    <g transform="translate(176, 42)">
-      <rect x="0" y="0" width="152" height="28" rx="5" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
-      <text x="76" y="18" text-anchor="middle" font-family="monospace" font-size="8" fill="#ea580c">SendNotificationsAsync()</text>
-    </g>
+  <!-- ============ Column 3: Service Layer ============ -->
+  <g transform="translate(530, 90)">
+    <rect x="0" y="0" width="200" height="200" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <rect x="0" y="0" width="200" height="35" rx="12" fill="url(#orangeGradient)"/>
+    <text x="100" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">Service Layer</text>
+    <text x="100" y="58" text-anchor="middle" font-size="11" fill="#475569">NotificationService</text>
+    <text x="100" y="76" text-anchor="middle" font-size="11" fill="#475569">INotificationSenderFactory</text>
+    <line x1="15" y1="92" x2="185" y2="92" stroke="#d1d5db" stroke-width="1"/>
+    <text x="100" y="112" text-anchor="middle" font-size="10" fill="#64748b">SendNotificationAsync()</text>
+    <text x="100" y="128" text-anchor="middle" font-size="10" fill="#64748b">SendNotificationsAsync()</text>
+    <text x="100" y="144" text-anchor="middle" font-size="10" fill="#64748b">Task.WhenAll (parallel)</text>
+    <text x="100" y="168" text-anchor="middle" font-size="10" fill="#f97316" font-weight="bold">factory.GetSender(ch)</text>
+    <text x="100" y="184" text-anchor="middle" font-size="10" fill="#f97316">按渠道解析 Sender</text>
   </g>
 
-  <!-- Arrow: Service → Factory -->
-  <path d="M 600 442 L 600 478" stroke="#ffedd5" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 600 442 L 600 478" class="flow-line-orange" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrowOrange)" stroke-linecap="round"/>
-
-  <!-- ==================== 4. Factory (ServiceProvider) ==================== -->
-  <g transform="translate(430, 480)">
-    <rect x="0" y="0" width="340" height="82" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="6,3"/>
-    <rect x="0" y="0" width="340" height="32" rx="12" fill="url(#orangeGradient)"/>
-    <rect x="0" y="18" width="340" height="14" fill="url(#orangeGradient)"/>
-    <text x="170" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">ServiceProviderNotificationSenderFactory</text>
-    <g transform="translate(12, 42)">
-      <rect x="0" y="0" width="152" height="28" rx="5" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
-      <text x="76" y="18" text-anchor="middle" font-family="monospace" font-size="8" fill="#ea580c">GetSender(channel)</text>
-    </g>
-    <g transform="translate(176, 42)">
-      <rect x="0" y="0" width="152" height="28" rx="5" fill="#ffffff" stroke="#fed7aa" stroke-width="1"/>
-      <text x="76" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748b">enum → Type 映射</text>
-      <text x="76" y="26" text-anchor="middle" font-family="monospace" font-size="7" fill="#94a3b8">GetRequiredService(T)</text>
-    </g>
+  <!-- ============ Column 4: Factory ============ -->
+  <g transform="translate(800, 90)">
+    <rect x="0" y="0" width="200" height="200" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="0" y="0" width="200" height="35" rx="12" fill="url(#blueGradient)"/>
+    <text x="100" y="24" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">Factory</text>
+    <text x="100" y="58" text-anchor="middle" font-size="10" fill="#475569">ServiceProviderNotification</text>
+    <text x="100" y="72" text-anchor="middle" font-size="10" fill="#475569">SenderFactory</text>
+    <line x1="15" y1="88" x2="185" y2="88" stroke="#d1d5db" stroke-width="1"/>
+    <text x="100" y="108" text-anchor="middle" font-size="10" fill="#64748b">GetRequiredKeyedService</text>
+    <text x="100" y="124" text-anchor="middle" font-size="10" fill="#64748b">&lt;INotificationSender&gt;(ch)</text>
+    <line x1="15" y1="140" x2="185" y2="140" stroke="#d1d5db" stroke-width="1"/>
+    <text x="100" y="160" text-anchor="middle" font-size="10" fill="#3b82f6" font-weight="bold">.NET 8+ Keyed Services</text>
+    <text x="100" y="176" text-anchor="middle" font-size="10" fill="#3b82f6">按 Enum Key 解析实现</text>
+    <text x="100" y="192" text-anchor="middle" font-size="10" fill="#94a3b8">无需修改工厂代码</text>
   </g>
 
-  <!-- ==================== Arrows: Factory → 3 Senders (fan out) ==================== -->
-  <path d="M 490 562 C 490 590 195 590 195 615" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 490 562 C 490 590 195 590 195 615" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
+  <!-- ============ Senders Row (4 senders) ============ -->
 
-  <path d="M 600 562 L 600 615" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 600 562 L 600 615" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
-
-  <path d="M 710 562 C 710 590 1005 590 1005 615" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 710 562 C 710 590 1005 590 1005 615" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
-
-  <!-- ==================== 5. Senders ==================== -->
-  <!-- EmailNotificationSender -->
-  <g transform="translate(55, 615)">
-    <rect x="0" y="0" width="280" height="95" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
-    <rect x="0" y="0" width="280" height="32" rx="12" fill="url(#greenGradient)"/>
-    <rect x="0" y="18" width="280" height="14" fill="url(#greenGradient)"/>
-    <text x="140" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">EmailNotificationSender</text>
-    <g transform="translate(12, 42)">
-      <rect x="0" y="0" width="120" height="40" rx="5" fill="#ffffff" stroke="#dcfce7" stroke-width="1"/>
-      <text x="60" y="16" text-anchor="middle" font-family="monospace" font-size="9" fill="#16a34a">SmtpClient</text>
-      <text x="60" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Port 587 / SSL</text>
-    </g>
-    <g transform="translate(148, 42)">
-      <rect x="0" y="0" width="120" height="40" rx="5" fill="#ffffff" stroke="#dcfce7" stroke-width="1"/>
-      <text x="60" y="16" text-anchor="middle" font-family="monospace" font-size="9" fill="#16a34a">SmtpSettings</text>
-      <text x="60" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">IOptions&lt;T&gt;</text>
-    </g>
+  <!-- Email Sender -->
+  <g transform="translate(30, 390)">
+    <rect x="0" y="0" width="155" height="140" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <rect x="0" y="0" width="155" height="32" rx="12" fill="url(#greenGradient)"/>
+    <text x="78" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">Email Sender</text>
+    <text x="78" y="52" text-anchor="middle" font-size="10" fill="#475569">SmtpClient</text>
+    <text x="78" y="68" text-anchor="middle" font-size="10" fill="#475569">SmtpSettings</text>
+    <line x1="10" y1="82" x2="145" y2="82" stroke="#d1d5db" stroke-width="1"/>
+    <text x="78" y="100" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="bold">SMTP Server</text>
+    <text x="78" y="116" text-anchor="middle" font-size="10" fill="#22c55e">smtp.gmail.com:587</text>
   </g>
 
-  <!-- SmsNotificationSender -->
-  <g transform="translate(460, 615)">
-    <rect x="0" y="0" width="280" height="95" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
-    <rect x="0" y="0" width="280" height="32" rx="12" fill="url(#greenGradient)"/>
-    <rect x="0" y="18" width="280" height="14" fill="url(#greenGradient)"/>
-    <text x="140" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">SmsNotificationSender</text>
-    <g transform="translate(12, 42)">
-      <rect x="0" y="0" width="120" height="40" rx="5" fill="#ffffff" stroke="#dcfce7" stroke-width="1"/>
-      <text x="60" y="16" text-anchor="middle" font-family="monospace" font-size="8" fill="#16a34a">IHttpClientFactory</text>
-      <text x="60" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Per-request</text>
-    </g>
-    <g transform="translate(148, 42)">
-      <rect x="0" y="0" width="120" height="40" rx="5" fill="#ffffff" stroke="#dcfce7" stroke-width="1"/>
-      <text x="60" y="16" text-anchor="middle" font-family="monospace" font-size="9" fill="#16a34a">SmsSettings</text>
-      <text x="60" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">IOptions&lt;T&gt;</text>
-    </g>
+  <!-- SMS Sender -->
+  <g transform="translate(205, 390)">
+    <rect x="0" y="0" width="155" height="140" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <rect x="0" y="0" width="155" height="32" rx="12" fill="url(#greenGradient)"/>
+    <text x="78" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">SMS Sender</text>
+    <text x="78" y="52" text-anchor="middle" font-size="10" fill="#475569">HttpClient (REST)</text>
+    <text x="78" y="68" text-anchor="middle" font-size="10" fill="#475569">SmsSettings</text>
+    <line x1="10" y1="82" x2="145" y2="82" stroke="#d1d5db" stroke-width="1"/>
+    <text x="78" y="100" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="bold">Twilio API</text>
+    <text x="78" y="116" text-anchor="middle" font-size="10" fill="#22c55e">api.twilio.com</text>
   </g>
 
-  <!-- SlackNotificationSender -->
-  <g transform="translate(865, 615)">
-    <rect x="0" y="0" width="280" height="95" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
-    <rect x="0" y="0" width="280" height="32" rx="12" fill="url(#greenGradient)"/>
-    <rect x="0" y="18" width="280" height="14" fill="url(#greenGradient)"/>
-    <text x="140" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">SlackNotificationSender</text>
-    <g transform="translate(12, 42)">
-      <rect x="0" y="0" width="120" height="40" rx="5" fill="#ffffff" stroke="#dcfce7" stroke-width="1"/>
-      <text x="60" y="16" text-anchor="middle" font-family="monospace" font-size="8" fill="#16a34a">IHttpClientFactory</text>
-      <text x="60" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">Per-request</text>
-    </g>
-    <g transform="translate(148, 42)">
-      <rect x="0" y="0" width="120" height="40" rx="5" fill="#ffffff" stroke="#dcfce7" stroke-width="1"/>
-      <text x="60" y="16" text-anchor="middle" font-family="monospace" font-size="9" fill="#16a34a">SlackSettings</text>
-      <text x="60" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#94a3b8">IOptions&lt;T&gt;</text>
-    </g>
+  <!-- Slack Sender -->
+  <g transform="translate(380, 390)">
+    <rect x="0" y="0" width="155" height="140" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <rect x="0" y="0" width="155" height="32" rx="12" fill="url(#greenGradient)"/>
+    <text x="78" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">Slack Sender</text>
+    <text x="78" y="52" text-anchor="middle" font-size="10" fill="#475569">HttpClient (Webhook)</text>
+    <text x="78" y="68" text-anchor="middle" font-size="10" fill="#475569">SlackSettings</text>
+    <line x1="10" y1="82" x2="145" y2="82" stroke="#d1d5db" stroke-width="1"/>
+    <text x="78" y="100" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="bold">Slack Webhook</text>
+    <text x="78" y="116" text-anchor="middle" font-size="10" fill="#22c55e">hooks.slack.com</text>
   </g>
 
-  <!-- ==================== Arrows: Senders → External ==================== -->
-  <path d="M 195 710 L 195 752" stroke="#dbeafe" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 195 710 L 195 752" class="flow-line-blue" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowBlue)" stroke-linecap="round"/>
-
-  <path d="M 600 710 L 600 752" stroke="#dbeafe" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 600 710 L 600 752" class="flow-line-blue" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowBlue)" stroke-linecap="round"/>
-
-  <path d="M 1005 710 L 1005 752" stroke="#dbeafe" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M 1005 710 L 1005 752" class="flow-line-blue" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowBlue)" stroke-linecap="round"/>
-
-  <!-- ==================== 6. External Services ==================== -->
-  <g transform="translate(55, 754)">
-    <rect x="0" y="0" width="280" height="50" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
-    <rect x="0" y="0" width="280" height="26" rx="10" fill="url(#blueGradient)"/>
-    <rect x="0" y="14" width="280" height="12" fill="url(#blueGradient)"/>
-    <text x="140" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">SMTP Server</text>
-    <text x="140" y="42" text-anchor="middle" font-family="monospace" font-size="9" fill="#2563eb">smtp.gmail.com:587</text>
+  <!-- Teams Sender -->
+  <g transform="translate(555, 390)">
+    <rect x="0" y="0" width="155" height="140" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+    <rect x="0" y="0" width="155" height="32" rx="12" fill="url(#greenGradient)"/>
+    <text x="78" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">Teams Sender</text>
+    <text x="78" y="52" text-anchor="middle" font-size="10" fill="#475569">HttpClient (Webhook)</text>
+    <text x="78" y="68" text-anchor="middle" font-size="10" fill="#475569">TeamsSettings</text>
+    <line x1="10" y1="82" x2="145" y2="82" stroke="#d1d5db" stroke-width="1"/>
+    <text x="78" y="100" text-anchor="middle" font-size="10" fill="#22c55e" font-weight="bold">Teams Webhook</text>
+    <text x="78" y="116" text-anchor="middle" font-size="10" fill="#22c55e">Adaptive Card</text>
   </g>
 
-  <g transform="translate(460, 754)">
-    <rect x="0" y="0" width="280" height="50" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
-    <rect x="0" y="0" width="280" height="26" rx="10" fill="url(#blueGradient)"/>
-    <rect x="0" y="14" width="280" height="12" fill="url(#blueGradient)"/>
-    <text x="140" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Twilio REST API</text>
-    <text x="140" y="42" text-anchor="middle" font-family="monospace" font-size="9" fill="#2563eb">api.twilio.com/2010-04-01</text>
+  <!-- ============ DI Container Sidebar ============ -->
+  <g transform="translate(760, 390)">
+    <rect x="0" y="0" width="220" height="140" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="0" y="0" width="220" height="32" rx="12" fill="url(#blueGradient)"/>
+    <text x="110" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">DI Container</text>
+    <text x="110" y="52" text-anchor="middle" font-size="10" fill="#475569">AddKeyedSingleton&lt;ISender, T&gt;(ch)</text>
+    <line x1="10" y1="64" x2="210" y2="64" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="110" y="82" text-anchor="middle" font-size="9" fill="#64748b" font-family="Consolas, monospace">Key(Email) → EmailSender</text>
+    <text x="110" y="96" text-anchor="middle" font-size="9" fill="#64748b" font-family="Consolas, monospace">Key(SMS) → SmsSender</text>
+    <text x="110" y="110" text-anchor="middle" font-size="9" fill="#64748b" font-family="Consolas, monospace">Key(Slack) → SlackSender</text>
+    <text x="110" y="124" text-anchor="middle" font-size="9" fill="#64748b" font-family="Consolas, monospace">Key(Teams) → TeamsSender</text>
   </g>
 
-  <g transform="translate(865, 754)">
-    <rect x="0" y="0" width="280" height="50" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
-    <rect x="0" y="0" width="280" height="26" rx="10" fill="url(#blueGradient)"/>
-    <rect x="0" y="14" width="280" height="12" fill="url(#blueGradient)"/>
-    <text x="140" y="18" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">Slack Incoming Webhook</text>
-    <text x="140" y="42" text-anchor="middle" font-family="monospace" font-size="9" fill="#2563eb">hooks.slack.com/services</text>
+  <!-- ============ Flow Lines: Main Pipeline (Top Row) ============ -->
+
+  <!-- SPA → API -->
+  <path d="M 210 190 L 275 190" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 210 190 L 275 190" class="flow-line-teal" stroke="#42b883" stroke-width="3" fill="none" marker-end="url(#arrowTeal)" stroke-linecap="round"/>
+
+  <!-- API → Service -->
+  <path d="M 460 190 L 525 190" stroke="#f3e8ff" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 460 190 L 525 190" class="flow-line-purple" stroke="#a855f7" stroke-width="3" fill="none" marker-end="url(#arrowPurple)" stroke-linecap="round"/>
+
+  <!-- Service → Factory -->
+  <path d="M 730 190 L 795 190" stroke="#ffedd5" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 730 190 L 795 190" class="flow-line-orange" stroke="#f97316" stroke-width="3" fill="none" marker-end="url(#arrowOrange)" stroke-linecap="round"/>
+
+  <!-- ============ Flow Lines: Factory → Senders ============ -->
+
+  <!-- Factory → Email -->
+  <path d="M 860 290 Q 860 340 108 385" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 860 290 Q 860 340 108 385" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
+
+  <!-- Factory → SMS -->
+  <path d="M 880 290 Q 880 340 283 385" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 880 290 Q 880 340 283 385" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
+
+  <!-- Factory → Slack -->
+  <path d="M 900 290 Q 900 340 458 385" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 900 290 Q 900 340 458 385" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
+
+  <!-- Factory → Teams -->
+  <path d="M 920 290 Q 920 340 633 385" stroke="#dcfce7" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 920 290 Q 920 340 633 385" class="flow-line-green" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowGreen)" stroke-linecap="round"/>
+
+  <!-- ============ Flow Labels ============ -->
+  <text x="243" y="180" text-anchor="middle" font-size="9" fill="#42b883">JSON</text>
+  <text x="493" y="180" text-anchor="middle" font-size="9" fill="#a855f7">request</text>
+  <text x="763" y="180" text-anchor="middle" font-size="9" fill="#f97316">GetSender()</text>
+
+  <!-- ============ Data Flow Card (Bottom Left) ============ -->
+  <g transform="translate(30, 570)">
+    <rect x="0" y="0" width="380" height="220" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="0" y="0" width="380" height="30" rx="12" fill="#1e293b"/>
+    <text x="190" y="21" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">Data Flow / 数据流程</text>
+
+    <text x="20" y="55" font-size="11" fill="#475569">
+      <tspan x="20" dy="0" fill="#0ea5e9" font-weight="bold">1.</tspan>
+      <tspan> SPA 前端通过 fetch() 发送 JSON 请求到 API 端点</tspan>
+    </text>
+    <text x="20" y="78" font-size="11" fill="#475569">
+      <tspan x="20" dy="0" fill="#a855f7" font-weight="bold">2.</tspan>
+      <tspan> Minimal API 反序列化 NotificationRequest</tspan>
+    </text>
+    <text x="20" y="101" font-size="11" fill="#475569">
+      <tspan x="20" dy="0" fill="#f97316" font-weight="bold">3.</tspan>
+      <tspan> Service 调用 Factory.GetSender(channel)</tspan>
+    </text>
+    <text x="20" y="124" font-size="11" fill="#475569">
+      <tspan x="20" dy="0" fill="#3b82f6" font-weight="bold">4.</tspan>
+      <tspan> Factory 通过 Keyed Services 按 Enum 解析</tspan>
+    </text>
+    <text x="20" y="147" font-size="11" fill="#475569">
+      <tspan x="20" dy="0" fill="#22c55e" font-weight="bold">5.</tspan>
+      <tspan> Sender 通过 HTTP/SMTP 发送至外部服务</tspan>
+    </text>
+    <text x="20" y="170" font-size="11" fill="#475569">
+      <tspan x="20" dy="0" fill="#64748b" font-weight="bold">6.</tspan>
+      <tspan> 结果逐层返回，bulk 使用 Task.WhenAll 并行</tspan>
+    </text>
+
+    <text x="190" y="200" text-anchor="middle" font-size="10" fill="#94a3b8" font-style="italic">新增渠道：只需 AddKeyedSingleton 注册，无需修改工厂</text>
   </g>
 
-  <!-- ==================== Side: Models & Settings ==================== -->
-  <g transform="translate(40, 360)">
-    <rect x="0" y="0" width="220" height="200" rx="10" fill="#fef2f2" stroke="#e94560" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="110" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#c73652">Models / Settings</text>
-    <line x1="10" y1="28" x2="210" y2="28" stroke="#fecaca" stroke-width="1"/>
-    <text x="15" y="46" font-family="monospace" font-size="9" fill="#1e293b">NotificationMessage</text>
-    <text x="15" y="62" font-family="monospace" font-size="9" fill="#1e293b">NotificationRequest</text>
-    <text x="15" y="78" font-family="monospace" font-size="9" fill="#1e293b">NotificationChannel (enum)</text>
-    <line x1="10" y1="88" x2="210" y2="88" stroke="#fecaca" stroke-width="1"/>
-    <text x="15" y="106" font-family="monospace" font-size="9" fill="#64748b">SmtpSettings</text>
-    <text x="15" y="122" font-family="monospace" font-size="9" fill="#64748b">SmsSettings</text>
-    <text x="15" y="138" font-family="monospace" font-size="9" fill="#64748b">SlackSettings</text>
-    <line x1="10" y1="148" x2="210" y2="148" stroke="#fecaca" stroke-width="1"/>
-    <text x="15" y="166" font-family="monospace" font-size="9" fill="#64748b">SendNotificationsResult</text>
-    <text x="15" y="182" font-family="monospace" font-size="9" fill="#64748b">SendResultDetail</text>
+  <!-- ============ Interface Card (Bottom Center) ============ -->
+  <g transform="translate(440, 570)">
+    <rect x="0" y="0" width="300" height="220" rx="12" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
+    <rect x="0" y="0" width="300" height="30" rx="12" fill="url(#purpleGradient)"/>
+    <text x="150" y="21" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">Interfaces / 接口定义</text>
+
+    <text x="15" y="52" font-size="10" fill="#7c3aed" font-weight="bold" font-family="Consolas, monospace">INotificationSender</text>
+    <text x="25" y="68" font-size="9" fill="#475569" font-family="Consolas, monospace">+ SendAsync(NotificationMessage)</text>
+    <text x="25" y="82" font-size="9" fill="#475569" font-family="Consolas, monospace">+ Channel { get; } // enum</text>
+
+    <line x1="15" y1="94" x2="285" y2="94" stroke="#e9d5ff" stroke-width="1"/>
+
+    <text x="15" y="112" font-size="10" fill="#7c3aed" font-weight="bold" font-family="Consolas, monospace">INotificationSenderFactory</text>
+    <text x="25" y="128" font-size="9" fill="#475569" font-family="Consolas, monospace">+ GetSender(NotificationChannel)</text>
+    <text x="25" y="142" font-size="9" fill="#475569" font-family="Consolas, monospace">  → INotificationSender</text>
+
+    <line x1="15" y1="154" x2="285" y2="154" stroke="#e9d5ff" stroke-width="1"/>
+
+    <text x="15" y="172" font-size="10" fill="#7c3aed" font-weight="bold" font-family="Consolas, monospace">NotificationChannel (enum)</text>
+    <text x="25" y="188" font-size="9" fill="#475569" font-family="Consolas, monospace">Email | SMS | Slack | Teams</text>
+    <text x="25" y="205" font-size="9" fill="#94a3b8" font-family="Consolas, monospace">// 扩展时只需添加 enum 值</text>
   </g>
 
-  <!-- Dotted: Models → Service -->
-  <path d="M 260 410 L 428 395" stroke="#fecaca" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
-  <!-- Dotted: Models → Factory -->
-  <path d="M 260 490 L 428 515" stroke="#fecaca" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+  <!-- ============ Legend (Bottom Right) ============ -->
+  <g transform="translate(770, 570)">
+    <rect x="0" y="0" width="200" height="220" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="0" y="0" width="200" height="30" rx="12" fill="#1e293b"/>
+    <text x="100" y="21" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">Legend / 图例</text>
 
-  <!-- ==================== Side: DI Container (Program.cs) ==================== -->
-  <g transform="translate(930, 360)">
-    <rect x="0" y="0" width="220" height="120" rx="10" fill="#fef2f2" stroke="#e94560" stroke-width="1.5" stroke-dasharray="5,3"/>
-    <text x="110" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#c73652">DI Container (Program.cs)</text>
-    <line x1="10" y1="28" x2="210" y2="28" stroke="#fecaca" stroke-width="1"/>
-    <text x="15" y="46" font-family="monospace" font-size="8" fill="#1e293b">AddSingleton&lt;EmailSender&gt;()</text>
-    <text x="15" y="62" font-family="monospace" font-size="8" fill="#1e293b">AddSingleton&lt;SmsSender&gt;()</text>
-    <text x="15" y="78" font-family="monospace" font-size="8" fill="#1e293b">AddSingleton&lt;SlackSender&gt;()</text>
-    <text x="15" y="94" font-family="monospace" font-size="8" fill="#64748b">AddHttpClient()</text>
-    <text x="15" y="110" font-family="monospace" font-size="8" fill="#64748b">Configure&lt;TSettings&gt;()</text>
-  </g>
+    <rect x="15" y="42" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#42b883" stroke-width="1.5"/>
+    <text x="38" y="54" font-size="10" fill="#475569">Frontend / 前端</text>
 
-  <!-- Dotted: DI → Factory -->
-  <path d="M 930 430 L 772 515" stroke="#fecaca" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
-  <!-- Dotted: DI → Senders -->
-  <path d="M 930 470 C 960 550 1005 580 1005 613" stroke="#fecaca" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+    <rect x="15" y="66" width="14" height="14" rx="3" fill="#faf5ff" stroke="#a855f7" stroke-width="1.5"/>
+    <text x="38" y="78" font-size="10" fill="#475569">API / Interface / 接口</text>
 
-  <!-- ==================== Process Description ==================== -->
-  <g transform="translate(40, 835)">
-    <rect x="0" y="0" width="600" height="110" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
-    <text x="300" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1e293b">数据流程 / Data Flow</text>
-    <line x1="15" y1="30" x2="585" y2="30" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="15" y="90" width="14" height="14" rx="3" fill="#fff7ed" stroke="#f97316" stroke-width="1.5"/>
+    <text x="38" y="102" font-size="10" fill="#475569">Service / 服务层</text>
 
-    <g transform="translate(20, 42)">
-      <circle cx="8" cy="8" r="5" fill="#0ea5e9"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">1. SPA 前端通过 fetch() 发送 JSON 请求到 API 端点</text>
-    </g>
-    <g transform="translate(20, 60)">
-      <circle cx="8" cy="8" r="5" fill="#a855f7"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">2. Minimal API 反序列化 NotificationRequest，调用 NotificationService</text>
-    </g>
-    <g transform="translate(20, 78)">
-      <circle cx="8" cy="8" r="5" fill="#f97316"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">3. Service 调用 Factory.GetSender(channel)，通过 enum→Type 映射按需解析 Sender</text>
-    </g>
-    <g transform="translate(20, 96)">
-      <circle cx="8" cy="8" r="5" fill="#3b82f6"/>
-      <text x="22" y="12" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">4. Sender 通过 HTTP/SMTP 发送至外部服务，结果逐层返回</text>
-    </g>
-  </g>
+    <rect x="15" y="114" width="14" height="14" rx="3" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="38" y="126" font-size="10" fill="#475569">Factory / DI / 工厂</text>
 
-  <!-- ==================== Legend ==================== -->
-  <g transform="translate(680, 835)">
-    <rect x="0" y="0" width="480" height="110" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
-    <text x="240" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#64748b">图例 / LEGEND</text>
-    <line x1="15" y1="30" x2="465" y2="30" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="15" y="138" width="14" height="14" rx="3" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="38" y="150" font-size="10" fill="#475569">Senders / 发送器</text>
 
-    <rect x="20" y="42" width="28" height="14" rx="3" fill="#0ea5e9"/>
-    <text x="55" y="53" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Frontend 前端</text>
+    <line x1="15" y1="164" x2="185" y2="164" stroke="#e2e8f0" stroke-width="1"/>
 
-    <rect x="170" y="42" width="28" height="14" rx="3" fill="#a855f7"/>
-    <text x="205" y="53" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">API 端点</text>
+    <path d="M 15 178 L 50 178" stroke="#42b883" stroke-width="2.5" stroke-dasharray="6, 3"/>
+    <text x="60" y="182" font-size="10" fill="#475569">Data Flow / 数据流</text>
 
-    <rect x="300" y="42" width="28" height="14" rx="3" fill="#f97316"/>
-    <text x="335" y="53" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Service / Factory</text>
-
-    <rect x="20" y="66" width="28" height="14" rx="3" fill="#22c55e"/>
-    <text x="55" y="77" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Sender 发送器</text>
-
-    <rect x="170" y="66" width="28" height="14" rx="3" fill="#3b82f6"/>
-    <text x="205" y="77" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">External 外部服务</text>
-
-    <rect x="300" y="66" width="28" height="14" rx="3" fill="#e94560"/>
-    <text x="335" y="77" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">Models / DI 配置</text>
-
-    <line x1="20" y1="93" x2="48" y2="93" stroke="#22c55e" stroke-width="3" stroke-dasharray="8,4"/>
-    <text x="55" y="97" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">数据流 (动画)</text>
-
-    <line x1="170" y1="93" x2="198" y2="93" stroke="#fecaca" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <text x="205" y="97" font-family="Arial, sans-serif" font-size="10" fill="#1e293b">依赖关系 (虚线)</text>
+    <path d="M 15 198 L 50 198" stroke="#3b82f6" stroke-width="2"/>
+    <text x="60" y="202" font-size="10" fill="#475569">Dependency / 依赖</text>
   </g>
 
 </svg>

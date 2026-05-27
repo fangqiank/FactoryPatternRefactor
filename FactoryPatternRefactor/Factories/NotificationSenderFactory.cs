@@ -1,6 +1,5 @@
 ﻿using FactoryPatternRefactor.Interfaces;
 using FactoryPatternRefactor.Models;
-using FactoryPatternRefactor.Senders;
 
 namespace FactoryPatternRefactor.Factories
 {
@@ -26,12 +25,12 @@ namespace FactoryPatternRefactor.Factories
     public class ServiceProviderNotificationSenderFactory : INotificationSenderFactory
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly Dictionary<NotificationChannel, Type> _senderTypes = new()
-        {
-            [NotificationChannel.Email] = typeof(EmailNotificationSender),
-            [NotificationChannel.SMS] = typeof(SmsNotificationSender),
-            [NotificationChannel.Slack] = typeof(SlackNotificationSender),
-        };
+        //private readonly Dictionary<NotificationChannel, Type> _senderTypes = new()
+        //{
+        //    [NotificationChannel.Email] = typeof(EmailNotificationSender),
+        //    [NotificationChannel.SMS] = typeof(SmsNotificationSender),
+        //    [NotificationChannel.Slack] = typeof(SlackNotificationSender),
+        //};
 
         public ServiceProviderNotificationSenderFactory(IServiceProvider serviceProvider)
         {
@@ -40,10 +39,19 @@ namespace FactoryPatternRefactor.Factories
 
         public INotificationSender GetSender(NotificationChannel channel)
         {
-            if (!_senderTypes.TryGetValue(channel, out var senderType))
-                throw new ArgumentException($"No sender registered for channel: {channel}");
+            //if (!_senderTypes.TryGetValue(channel, out var senderType))
+            //    throw new ArgumentException($"No sender registered for channel: {channel}");
 
-            return (INotificationSender)_serviceProvider.GetRequiredService(senderType);
+            //return (INotificationSender)_serviceProvider.GetRequiredService(senderType);
+
+            try
+            {
+                return _serviceProvider.GetRequiredKeyedService<INotificationSender>(channel);
+            }
+            catch (InvalidOperationException)
+            {
+                throw new ArgumentException($"No sender registered for channel: {channel}");
+            }
         }
     }
 }

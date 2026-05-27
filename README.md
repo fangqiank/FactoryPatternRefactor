@@ -18,11 +18,11 @@ A .NET 10 ASP.NET Core Minimal API demonstrating the **Factory Pattern** for mul
 ```
 SPA Frontend → API Endpoints → NotificationService → ServiceProviderNotificationSenderFactory
                                                                           │
-                                                          ┌───────────────┼───────────────┐
-                                                          ↓               ↓               ↓
-                                                   EmailSender      SmsSender      SlackSender
-                                                          ↓               ↓               ↓
-                                                   SMTP Server     Twilio API    Slack Webhook
+                                          ┌───────────────┬───────────────┼───────────────┐
+                                          ↓               ↓               ↓               ↓
+                                   EmailSender      SmsSender      SlackSender     TeamsSender
+                                          ↓               ↓               ↓               ↓
+                                   SMTP Server     Twilio API    Slack Webhook   Teams Webhook
 ```
 
 ### Module Table / 模块说明
@@ -31,7 +31,7 @@ SPA Frontend → API Endpoints → NotificationService → ServiceProviderNotifi
 |--------|------|----------------|
 | **Models** | `Models/` | NotificationMessage, NotificationRequest, NotificationChannel enum, Settings, Results |
 | **Interfaces** | `Interfaces/` | INotificationSender, INotificationSenderFactory |
-| **Senders** | `Senders/` | Email (SmtpClient), SMS (Twilio REST), Slack (Webhook) |
+| **Senders** | `Senders/` | Email (SmtpClient), SMS (Twilio REST), Slack (Webhook), Teams (Webhook + Adaptive Card) |
 | **Factory** | `Factories/` | ServiceProviderNotificationSenderFactory (active), DictionaryNotificationSenderFactory (alternative) |
 | **Service** | `Services/` | NotificationService — single & bulk send orchestration |
 | **API** | `Program.cs` | Minimal API endpoints + DI registration |
@@ -41,7 +41,7 @@ SPA Frontend → API Endpoints → NotificationService → ServiceProviderNotifi
 
 1. SPA 前端通过 `fetch()` 发送 JSON 请求到 API 端点
 2. Minimal API 反序列化 `NotificationRequest`，调用 `NotificationService`
-3. Service 调用 `Factory.GetSender(channel)`，通过 enum→Type 映射按需解析 Sender
+3. Service 调用 `Factory.GetSender(channel)`，通过 Keyed Services 按 enum 解析 Sender
 4. Sender 通过 HTTP/SMTP 发送至外部服务，结果逐层返回
 
 ### Factory Pattern / 工厂模式
@@ -50,8 +50,8 @@ SPA Frontend → API Endpoints → NotificationService → ServiceProviderNotifi
 
 | Factory | 解析方式 | 新增渠道 |
 |---------|---------|---------|
-| **ServiceProviderNotificationSenderFactory** (active) | `GetRequiredService(具体Type)` 按需解析 | 需注册具体类型 + 添加 enum→Type 映射 |
-| **DictionaryNotificationSenderFactory** (alternative) | `IEnumerable<INotificationSender>` 自动发现 | 只需注册 `INotificationSender` |
+| **ServiceProviderNotificationSenderFactory** (active) | .NET 8+ Keyed Services (`GetRequiredKeyedService`) | 只需 `AddKeyedSingleton` 注册 |
+| **DictionaryNotificationSenderFactory** (alternative) | `IEnumerable<INotificationSender>` 自动发现 | 只需非 Keyed 注册 `INotificationSender` |
 
 ## Quick Start / 快速开始
 
@@ -77,7 +77,7 @@ List available notification channels.
 
 ```json
 {
-  "availableChannels": ["Email", "SMS", "Slack"],
+  "availableChannels": ["Email", "SMS", "Slack", "Teams"],
   "message": "To add a new channel: 1) Add enum value 2) Create sender class 3) Register in DI"
 }
 ```
@@ -112,20 +112,22 @@ Send multiple notifications in parallel.
 [
   { "channel": "Email", "recipient": "user1@example.com", "subject": "Hi", "body": "Message 1" },
   { "channel": "SMS", "recipient": "+1234567890", "subject": "", "body": "Message 2" },
-  { "channel": "Slack", "recipient": "#general", "subject": "", "body": "Message 3" }
+  { "channel": "Slack", "recipient": "#general", "subject": "", "body": "Message 3" },
+  { "channel": "Teams", "recipient": "team-channel", "subject": "Alert", "body": "Message 4" }
 ]
 ```
 
 Response (200):
 ```json
 {
-  "total": 3,
-  "succeeded": 2,
+  "total": 4,
+  "succeeded": 3,
   "failed": 1,
   "details": [
     { "channel": "Email", "recipient": "user1@example.com", "success": true, "error": null },
     { "channel": "SMS", "recipient": "+1234567890", "success": true, "error": null },
-    { "channel": "Slack", "recipient": "#general", "success": false, "error": "Slack send failed: NotFound" }
+    { "channel": "Slack", "recipient": "#general", "success": true, "error": null },
+    { "channel": "Teams", "recipient": "team-channel", "success": false, "error": "Teams send failed: NotFound" }
   ]
 }
 ```
@@ -134,8 +136,8 @@ Response (200):
 
 1. Add enum value to `NotificationChannel` in `Models/NotificationMessage.cs`
 2. Create sender class in `Senders/` implementing `INotificationSender` + settings POCO in `Models/Settings.cs`
-3. Register in `Program.cs`: `builder.Services.AddSingleton<YourSender>(); builder.Services.Configure<YourSettings>(...)`
-4. Add enum→Type mapping in `ServiceProviderNotificationSenderFactory._senderTypes`
+3. Register in `Program.cs`: `builder.Services.AddKeyedSingleton<INotificationSender, YourSender>(NotificationChannel.YourChannel); builder.Services.Configure<YourSettings>(...)`
+4. No factory code changes needed — Keyed Services auto-resolve by enum key
 
 ## Configuration / 配置
 
@@ -145,6 +147,7 @@ Configure credentials in `FactoryPatternRefactor/appsettings.json`:
 {
   "SmtpSettings": { "server": "smtp.gmail.com", "port": 587, "username": "...", "password": "...", "fromAddress": "..." },
   "SmsSettings": { "accountSid": "...", "authToken": "...", "fromNumber": "+1..." },
-  "SlackSettings": { "webhookUrl": "https://hooks.slack.com/services/..." }
+  "SlackSettings": { "webhookUrl": "https://hooks.slack.com/services/..." },
+  "TeamsSettings": { "webhookUrl": "https://outlook.office.com/webhook/..." }
 }
 ```

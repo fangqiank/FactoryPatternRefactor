@@ -19,14 +19,18 @@ builder.Services.Configure<SmsSettings>(
     builder.Configuration.GetSection("SmsSettings"));
 builder.Services.Configure<SlackSettings>(
     builder.Configuration.GetSection("SlackSettings"));
+builder.Services.Configure<TeamsSettings>(
+    builder.Configuration.GetSection("TeamsSettings"));
 
 // Register HttpClient factory for senders
 builder.Services.AddHttpClient();
 
-// Register senders (concrete types for ServiceProvider factory resolution)
-builder.Services.AddSingleton<EmailNotificationSender>();
-builder.Services.AddSingleton<SmsNotificationSender>();
-builder.Services.AddSingleton<SlackNotificationSender>();
+// Register senders via Keyed Services (ServiceProvider factory uses GetRequiredKeyedService)
+// NOTE: DictionaryNotificationSenderFactory requires non-keyed registration (AddSingleton<INotificationSender, T>)
+builder.Services.AddKeyedSingleton<INotificationSender, EmailNotificationSender>(NotificationChannel.Email);
+builder.Services.AddKeyedSingleton<INotificationSender, SmsNotificationSender>(NotificationChannel.SMS);
+builder.Services.AddKeyedSingleton<INotificationSender, SlackNotificationSender>(NotificationChannel.Slack);
+builder.Services.AddKeyedSingleton<INotificationSender, TeamsNotificationSender>(NotificationChannel.Teams);
 
 // Register factory
 builder.Services.AddSingleton<INotificationSenderFactory, ServiceProviderNotificationSenderFactory>();

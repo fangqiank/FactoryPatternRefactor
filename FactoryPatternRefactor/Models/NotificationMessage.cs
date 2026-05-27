@@ -16,6 +16,7 @@
     {
         Email,
         SMS,
-        Slack
+        Slack,
+        Teams
     }
 }
