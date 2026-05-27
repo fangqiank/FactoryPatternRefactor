@@ -14,28 +14,21 @@ namespace FactoryPatternRefactor.Factories
         }
         public INotificationSender GetSender(NotificationChannel channel)
         {
-            if (_senders.TryGetValue(channel, out var sender))
-                return sender;
-
-            throw new ArgumentException($"No sender registered for channel: {channel}");
+            return _senders.TryGetValue(channel, out var sender) 
+                ? sender 
+                : throw new ArgumentException($"No sender registered for channel: {channel}");
         }
     }
 
     // Approach 2: IServiceProvider-based factory (更灵活，按需解析)
-    public class ServiceProviderNotificationSenderFactory : INotificationSenderFactory
+    public class ServiceProviderNotificationSenderFactory(IServiceProvider serviceProvider) : INotificationSenderFactory
     {
-        private readonly IServiceProvider _serviceProvider;
         //private readonly Dictionary<NotificationChannel, Type> _senderTypes = new()
         //{
         //    [NotificationChannel.Email] = typeof(EmailNotificationSender),
         //    [NotificationChannel.SMS] = typeof(SmsNotificationSender),
         //    [NotificationChannel.Slack] = typeof(SlackNotificationSender),
         //};
-
-        public ServiceProviderNotificationSenderFactory(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
 
         public INotificationSender GetSender(NotificationChannel channel)
         {
@@ -46,7 +39,7 @@ namespace FactoryPatternRefactor.Factories
 
             try
             {
-                return _serviceProvider.GetRequiredKeyedService<INotificationSender>(channel);
+                return serviceProvider.GetRequiredKeyedService<INotificationSender>(channel);
             }
             catch (InvalidOperationException)
             {

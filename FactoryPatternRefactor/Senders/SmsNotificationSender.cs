@@ -6,27 +6,19 @@ using Microsoft.Extensions.Options;
 
 namespace FactoryPatternRefactor.Senders
 {
-    public class SmsNotificationSender : INotificationSender
+    public class SmsNotificationSender(
+        IOptions<SmsSettings> options,
+        ILogger<SmsNotificationSender> logger,
+        IHttpClientFactory httpClientFactory)
+        : INotificationSender
     {
-        private readonly ILogger<SmsNotificationSender> _logger;
-        private readonly SmsSettings _settings;
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public SmsNotificationSender(
-            IOptions<SmsSettings> options,
-            ILogger<SmsNotificationSender> logger,
-            IHttpClientFactory httpClientFactory)
-        {
-            _logger = logger;
-            _settings = options.Value;
-            _httpClientFactory = httpClientFactory;
-        }
+        private readonly SmsSettings _settings = options.Value;
 
         public NotificationChannel Channel => NotificationChannel.SMS;
 
         public async Task SendAsync(NotificationMessage message)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = httpClientFactory.CreateClient();
 
             var authBytes = Encoding.ASCII.GetBytes($"{_settings.AccountSid}:{_settings.AuthToken}");
             var request = new HttpRequestMessage(HttpMethod.Post,
@@ -45,12 +37,12 @@ namespace FactoryPatternRefactor.Senders
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadAsStringAsync();
-                _logger.LogError("[SMS] Failed to send to {Recipient}: {StatusCode} - {Error}",
+                logger.LogError("[SMS] Failed to send to {Recipient}: {StatusCode} - {Error}",
                     message.Recipient, response.StatusCode, error);
                 throw new InvalidOperationException($"SMS send failed: {response.StatusCode}");
             }
 
-            _logger.LogInformation("[SMS] Successfully sent to {Recipient}", message.Recipient);
+            logger.LogInformation("[SMS] Successfully sent to {Recipient}", message.Recipient);
         }
     }
 }

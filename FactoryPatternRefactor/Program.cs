@@ -98,13 +98,10 @@ app.MapPost("/notify/bulk", async (
         return Results.Ok(result);
     });
 
-app.MapGet("/channels", () =>
+app.MapGet("/channels", () => Results.Ok(new
 {
-    return Results.Ok(new
-    {
-        AvailableChannels = Enum.GetNames(typeof(NotificationChannel)),
-        Message = "To add a new channel: 1) Add enum value 2) Create sender class 3) Register in DI"
-    });
-});
+    AvailableChannels = Enum.GetNames(typeof(NotificationChannel)),
+    Message = "To add a new channel: 1) Add enum value 2) Create sender class 3) Register in DI"
+}));
 
 app.Run();

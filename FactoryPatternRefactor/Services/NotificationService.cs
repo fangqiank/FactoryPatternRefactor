@@ -6,26 +6,36 @@ namespace FactoryPatternRefactor.Services
     // ❌ BEFORE: Messy NotificationService with too many responsibilities
     public class NotificationServiceBeforeRefactor
     {
-        public async Task SendNotifications(
+        public Task SendNotifications(
             List<(NotificationChannel Channel,
             NotificationMessage Message)> notifications)
         {
-            foreach (var (channel, message) in notifications)
+            try
             {
-                switch (channel)
+                foreach (var (channel, message) in notifications)
                 {
-                    case NotificationChannel.Email:
-                        Console.WriteLine($"Email to {message.Recipient}: {message.Body}");
-                        break;
-                    case NotificationChannel.SMS:
-                        Console.WriteLine($"SMS to {message.Recipient}: {message.Body}");
-                        break;
-                    case NotificationChannel.Slack:
-                        Console.WriteLine($"Slack to {message.Recipient}: {message.Body}");
-                        break;
-                    default:
-                        throw new ArgumentException($"Unknown channel: {channel}");
+                    switch (channel)
+                    {
+                        case NotificationChannel.Email:
+                            Console.WriteLine($"Email to {message.Recipient}: {message.Body}");
+                            break;
+                        case NotificationChannel.SMS:
+                            Console.WriteLine($"SMS to {message.Recipient}: {message.Body}");
+                            break;
+                        case NotificationChannel.Slack:
+                            Console.WriteLine($"Slack to {message.Recipient}: {message.Body}");
+                            break;
+                        case NotificationChannel.Teams:
+                        default:
+                            throw new ArgumentException($"Unknown channel: {channel}");
+                    }
                 }
+
+                return Task.CompletedTask;
+            }
+            catch (Exception exception)
+            {
+                return Task.FromException(exception);
             }
         }
     }

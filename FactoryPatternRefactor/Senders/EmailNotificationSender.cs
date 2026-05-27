@@ -5,20 +5,14 @@ using System.Net.Mail;
 
 namespace FactoryPatternRefactor.Senders
 {
-    public class EmailNotificationSender : INotificationSender
+    public class EmailNotificationSender(
+        IOptions<SmtpSettings> options,
+        ILogger<EmailNotificationSender> logger)
+        : INotificationSender
     {
         public NotificationChannel Channel => NotificationChannel.Email;
 
-        private readonly ILogger<EmailNotificationSender> _logger;
-        private readonly SmtpSettings _settings;
-
-        public EmailNotificationSender(
-            IOptions<SmtpSettings> options,
-            ILogger<EmailNotificationSender> logger)
-        {
-            _logger = logger;
-            _settings = options.Value;
-        }
+        private readonly SmtpSettings _settings = options.Value;
 
         public async Task SendAsync(NotificationMessage message)
         {
@@ -28,7 +22,7 @@ namespace FactoryPatternRefactor.Senders
                 smtp.EnableSsl = true;
                 smtp.Credentials = new System.Net.NetworkCredential(_settings.Username, _settings.Password);
 
-                _logger.LogInformation(
+                logger.LogInformation(
                     "[Email] Sending to {Recipient} via {Server}:{Port} - Subject: {Subject}",
                     message.Recipient,
                     _settings.Server,
@@ -44,13 +38,13 @@ namespace FactoryPatternRefactor.Senders
 
                 await smtp.SendMailAsync(mailMessage);
 
-                _logger.LogInformation(
+                logger.LogInformation(
                     "[Email] Successfully sent to {Recipient}",
                     message.Recipient);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "[Email] Failed to send to {Recipient} via {Server}:{Port}",
+                logger.LogError(ex, "[Email] Failed to send to {Recipient} via {Server}:{Port}",
                     message.Recipient, _settings.Server, _settings.Port);
                 throw new InvalidOperationException($"Email send failed: {ex.Message}", ex);
             }

@@ -6,21 +6,13 @@ using Microsoft.Extensions.Options;
 
 namespace FactoryPatternRefactor.Senders
 {
-    public class SlackNotificationSender : INotificationSender
+    public class SlackNotificationSender(
+        IOptions<SlackSettings> options,
+        ILogger<SlackNotificationSender> logger,
+        IHttpClientFactory httpClientFactory)
+        : INotificationSender
     {
-        private readonly ILogger<SlackNotificationSender> _logger;
-        private readonly SlackSettings _settings;
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public SlackNotificationSender(
-            IOptions<SlackSettings> options,
-            ILogger<SlackNotificationSender> logger,
-            IHttpClientFactory httpClientFactory)
-        {
-            _logger = logger;
-            _settings = options.Value;
-            _httpClientFactory = httpClientFactory;
-        }
+        private readonly SlackSettings _settings = options.Value;
 
         public NotificationChannel Channel => NotificationChannel.Slack;
 
@@ -33,7 +25,7 @@ namespace FactoryPatternRefactor.Senders
 
             var payload = JsonSerializer.Serialize(new { text });
 
-            var client = _httpClientFactory.CreateClient();
+            var client = httpClientFactory.CreateClient();
             var request = new HttpRequestMessage(HttpMethod.Post, _settings.WebhookUrl);
             request.Content = new StringContent(payload, Encoding.UTF8, "application/json");
 
@@ -42,12 +34,12 @@ namespace FactoryPatternRefactor.Senders
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadAsStringAsync();
-                _logger.LogError("[Slack] Failed to send to {Recipient}: {StatusCode} - {Error}",
+                logger.LogError("[Slack] Failed to send to {Recipient}: {StatusCode} - {Error}",
                     message.Recipient, response.StatusCode, error);
                 throw new InvalidOperationException($"Slack send failed: {response.StatusCode}");
             }
 
-            _logger.LogInformation("[Slack] Successfully sent to {Recipient}", message.Recipient);
+            logger.LogInformation("[Slack] Successfully sent to {Recipient}", message.Recipient);
         }
     }
 }

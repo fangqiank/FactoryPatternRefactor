@@ -6,21 +6,13 @@ using Microsoft.Extensions.Options;
 
 namespace FactoryPatternRefactor.Senders
 {
-    public class TeamsNotificationSender : INotificationSender
+    public class TeamsNotificationSender(
+        IOptions<TeamsSettings> options,
+        ILogger<TeamsNotificationSender> logger,
+        IHttpClientFactory httpClientFactory)
+        : INotificationSender
     {
-        private readonly ILogger<TeamsNotificationSender> _logger;
-        private readonly TeamsSettings _settings;
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public TeamsNotificationSender(
-            IOptions<TeamsSettings> options,
-            ILogger<TeamsNotificationSender> logger,
-            IHttpClientFactory httpClientFactory)
-        {
-            _logger = logger;
-            _settings = options.Value;
-            _httpClientFactory = httpClientFactory;
-        }
+        private readonly TeamsSettings _settings = options.Value;
 
         public NotificationChannel Channel => NotificationChannel.Teams;
 
@@ -47,7 +39,7 @@ namespace FactoryPatternRefactor.Senders
 
             var payload = JsonSerializer.Serialize(card);
 
-            var client = _httpClientFactory.CreateClient();
+            var client = httpClientFactory.CreateClient();
             var request = new HttpRequestMessage(HttpMethod.Post, _settings.WebhookUrl);
             request.Content = new StringContent(payload, Encoding.UTF8, "application/json");
 
@@ -56,12 +48,12 @@ namespace FactoryPatternRefactor.Senders
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadAsStringAsync();
-                _logger.LogError("[Teams] Failed to send to {Recipient}: {StatusCode} - {Error}",
+                logger.LogError("[Teams] Failed to send to {Recipient}: {StatusCode} - {Error}",
                     message.Recipient, response.StatusCode, error);
                 throw new InvalidOperationException($"Teams send failed: {response.StatusCode}");
             }
 
-            _logger.LogInformation("[Teams] Successfully sent to {Recipient}", message.Recipient);
+            logger.LogInformation("[Teams] Successfully sent to {Recipient}", message.Recipient);
         }
 
         private static List<object> BuildBody(NotificationMessage message)
